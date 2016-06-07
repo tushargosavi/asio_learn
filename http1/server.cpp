@@ -2,6 +2,7 @@
 #include <boost/asio.hpp>
 
 #include "server.hpp"
+#include "connection.hpp"
 
 using boost::asio::ip::tcp;
 
@@ -25,7 +26,7 @@ void server::do_accept() {
 			[this](boost::system::error_code ec) {
 			  if (!ec) {
 			    std::cout << "new connection " << std::endl;
-			    socket_.close();
+			    cmgr_.start(std::make_shared<connection>(std::move(socket_)));
 			  }
 			  do_accept();
 			});

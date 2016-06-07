@@ -3,6 +3,7 @@
 #define SERVER_H
 
 #include <boost/asio.hpp>
+#include "connection_mgr.hpp"
 
 using boost::asio::ip::tcp;
 
@@ -24,6 +25,7 @@ private:
   tcp::endpoint endpoint_;
   tcp::acceptor acceptor_;
   tcp::socket socket_;
+  connection_manager cmgr_;
 };
 
 #endif
